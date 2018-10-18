@@ -12,7 +12,7 @@
     <artifactId>incubator-breadcrumb-flow-vaadincom-demo</artifactId>
     <packaging>war</packaging>
 
-    <name>Incubator breadcrumb Demo</name>
+    <name>Incubator Breadcrumb Demo</name>
 
     <properties>
         <failOnMissingWebXml>false</failOnMissingWebXml>

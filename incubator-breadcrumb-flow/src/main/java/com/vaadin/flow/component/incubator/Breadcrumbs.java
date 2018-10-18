@@ -25,7 +25,9 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 /**
- * Server-side component for the <code>incubator-breadcrumb</code> element.
+ * Server-side component for the <code>incubator-breadcrumbs</code> element.
+ * An easy way to display breadcrumb on web pages.
+ * This component is container for Breadcrumb components
  *
  * @author Vaadin Ltd
  */
@@ -33,4 +35,14 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 @HtmlImport("frontend://bower_components/incubator-breadcrumbs/src/incubator-breadcrumbs.html")
 public class Breadcrumbs extends PolymerTemplate<TemplateModel>
         implements HasOrderedComponents<Breadcrumb>, HasSize {
+
+    /**
+     * Creates instance of Breadcrumbs  as container for breadcrumbs which are passed as param
+     *
+     * @param breadcrumbs
+     *                      brick components of breadcrumbs component
+     */
+    public Breadcrumbs(Breadcrumb... breadcrumbs) {
+        add(breadcrumbs);
+    }
 }

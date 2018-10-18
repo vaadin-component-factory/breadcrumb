@@ -31,18 +31,37 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 @HtmlImport("frontend://bower_components/incubator-breadcrumbs/src/incubator-breadcrumb.html")
 public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
 
-    public Breadcrumb() {
-    }
-
+    /**
+     * Creates instance of Breadcrumb with text set
+     *
+     * @param text
+     *              text of breadcrumb
+     */
     public Breadcrumb(String text) {
         setText(text);
     }
 
+    /**
+     *
+     * @param text
+     *              text of breadcrumb
+     * @param href
+     *              URL or a URL fragment that the breadcrumb points to
+     */
     public Breadcrumb(String text, String href) {
         this(text);
         setHref(href);
     }
 
+    /**
+     *
+     * @param text
+     *              text of breadcrumb
+     * @param href
+     *              URL or a URL fragment that the breadcrumb points to
+     * @param shift
+     *              indicates whether breadcrumb should be hidden for small viewport(hidden when set to true)
+     */
     public Breadcrumb(String text, String href, boolean shift) {
         this(text, href);
         setShift(shift);
@@ -52,6 +71,7 @@ public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
      * Setting text of breadcrumb
      *
      * @param text
+     *              text of breadcrumb
      */
     public void setText(String text) {
         getElement().setText(text);
@@ -65,9 +85,11 @@ public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
     }
 
     /**
-     * Setting shift parameter
+     * Setting shift parameter which indicates whether breadcrumb should be hidden for small viewport
+     * Will be hidden when shift is set to true
      *
      * @param shift
+     *              indicates whether breadcrumb should be hidden for small viewport(hidden when set to true)
      */
     public void setShift(boolean shift) {
         getModel().setShift(shift);
@@ -76,7 +98,7 @@ public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
     /**
      *  Getting shift parameter
      *
-     * @return strength indication
+     * @return shift parameter
      */
     public boolean isShift() {
         return getModel().isShift();
@@ -93,6 +115,7 @@ public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
      * Setting href for breadcrumb
      *
      * @param href
+     *              URL or a URL fragment that the breadcrumb points to
      */
     public void setHref(String href) {
         getModel().setHref(href);

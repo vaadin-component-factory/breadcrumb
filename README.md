@@ -39,5 +39,5 @@ To build and install the project into the local repository run
 
 This Add-on is distributed under [Commercial Vaadin Add-on License version 3](http://vaadin.com/license/cval-3) (CVALv3). For license terms, see LICENSE.txt.
 
-Incubator Password Strength is written by Vaadin Ltd.
+Incubator Breadcrumb is written by Vaadin Ltd.
 

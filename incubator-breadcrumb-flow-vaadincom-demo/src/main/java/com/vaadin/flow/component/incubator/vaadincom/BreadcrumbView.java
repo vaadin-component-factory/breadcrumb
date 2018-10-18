@@ -11,8 +11,7 @@ public class BreadcrumbView extends DemoView {
 
     @Override
     protected void initView() {
-        Breadcrumbs breadcrumbs = new Breadcrumbs();
-        breadcrumbs.add(
+        Breadcrumbs breadcrumbs = new Breadcrumbs(
                 new Breadcrumb("Home","breadcrumbs/#", true),
                 new Breadcrumb("Components", "breadcrumbs/#", true),
                 new Breadcrumb("Incubator Components", "breadcrumbs/#"),

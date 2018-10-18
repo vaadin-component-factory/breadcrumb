@@ -12,7 +12,7 @@
     <artifactId>incubator-breadcrumb-flow</artifactId>
     <packaging>jar</packaging>
 
-    <name>Incubator breadcrumb for Vaadin 10</name>
+    <name>Incubator Breadcrumb for Vaadin 10</name>
 
     <properties>
         <jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
@@ -72,10 +72,10 @@
                             <!-- Add-on specific fields to update -->
                             <AdVaaLicen>cval</AdVaaLicen>
                             <AdVaaName>incubator-breadcrumb</AdVaaName>
-                            <AdVaaPkg>com.vaadin.incubator.password.strength</AdVaaPkg>
+                            <AdVaaPkg>com.vaadin.incubator.breadcrumb</AdVaaPkg>
                             <!-- Implementation-Title and Implementation-Version
                                 come from the POM by default -->
-                            <Implementation-Title>Incubator breadcrumb</Implementation-Title>
+                            <Implementation-Title>Incubator Breadcrumb</Implementation-Title>
                         </manifestEntries>
                     </archive>
                 </configuration>
