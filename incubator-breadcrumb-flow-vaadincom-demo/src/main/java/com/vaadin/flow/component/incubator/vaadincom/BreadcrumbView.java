@@ -1,6 +1,8 @@
 package com.vaadin.flow.component.incubator.vaadincom;
 
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.incubator.Breadcrumb;
+import com.vaadin.flow.component.incubator.Breadcrumbs;
 import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
 

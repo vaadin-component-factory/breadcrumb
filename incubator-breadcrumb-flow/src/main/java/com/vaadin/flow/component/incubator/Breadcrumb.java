@@ -1,4 +1,4 @@
-package com.vaadin.flow.component.incubator.vaadincom;
+package com.vaadin.flow.component.incubator;
 
 /*
  * #%L
@@ -20,8 +20,6 @@ package com.vaadin.flow.component.incubator.vaadincom;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.component.polymertemplate.TemplateParser;
-import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 /**

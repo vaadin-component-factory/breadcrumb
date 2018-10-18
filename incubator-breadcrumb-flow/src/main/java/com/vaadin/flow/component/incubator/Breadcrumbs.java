@@ -1,4 +1,4 @@
-package com.vaadin.flow.component.incubator.vaadincom;
+package com.vaadin.flow.component.incubator;
 
 /*
  * #%L
@@ -22,7 +22,6 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 /**
