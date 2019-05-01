@@ -1,6 +1,6 @@
-# Incubator Breadcrumb for Flow
+# Breadcrumb
 
-Incubator Breadcrumbs for Flow is server-side component of [incubator-breadcrumbs](https://github.com/vaadin/incubator-breadcrumb) web component for Vaadin 10. 
+Breadcrumbs for Flow is server-side component of [vcf-breadcrumbs](https://github.com/vaadin/vcf-breadcrumb) web component for Vaadin 10. 
 It is a Web Component providing an easy way to display breadcrumb on web pages.
 
 [<img src="https://raw.githubusercontent.com/vaadin/incubator-breadcrumb/master/screenshot.png" width="200" alt="Screenshot of incubator-breadcrumbs">](https://vaadin.com/directory/components/vaadinincubator-breadcrumbs)
@@ -14,13 +14,13 @@ Breadcrumbs breadcrumbs = new Breadcrumbs();
 breadcrumbs.add(
     new Breadcrumb("Home","breadcrumbs/#", true),
     new Breadcrumb("Components", "breadcrumbs/#", true),
-    new Breadcrumb("Incubator Components", "breadcrumbs/#"),
+    new Breadcrumb("VCF Components", "breadcrumbs/#"),
     new Breadcrumb("Breadcrumbs"));
 ```
 Breadcrumbs "Home" and "Components" will be hidden when viewport is less then 420px  
 
 ## Demo
-To run demo go to `incubator-breadcrumbs-flow-vaadincom-demo/` subfolder and run `mbn jetty:run`.
+To run demo go to `breadcrumbs-demo/` subfolder and run `mbn jetty:run`.
 After server startup, you'll be able find demo at [http://localhost:8080/breadcrumbs](http://localhost:8080/breadcrumbs)
 
 ## Setting up for development:
@@ -28,7 +28,7 @@ After server startup, you'll be able find demo at [http://localhost:8080/breadcr
 Clone the project in GitHub (or fork it if you plan on contributing)
 
 ```
-https://github.com/vaadin/incubator-breadcrumb-flow
+https://github.com/vaadin/vcf-breadcrumb
 ```
 
 To build and install the project into the local repository run 
@@ -39,5 +39,5 @@ To build and install the project into the local repository run
 
 This Add-on is distributed under [Commercial Vaadin Add-on License version 3](http://vaadin.com/license/cval-3) (CVALv3). For license terms, see LICENSE.txt.
 
-Incubator Breadcrumb is written by Vaadin Ltd.
+Breadcrumb is written by Vaadin Ltd.
 

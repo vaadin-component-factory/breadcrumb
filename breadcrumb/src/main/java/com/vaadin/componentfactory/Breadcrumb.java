@@ -1,4 +1,4 @@
-package com.vaadin.flow.component.incubator;
+package com.vaadin.componentfactory;
 
 /*
  * #%L
@@ -8,10 +8,10 @@ package com.vaadin.flow.component.incubator;
  * %%
  * This program is available under Commercial Vaadin Add-On License 3.0
  * (CVALv3).
- * 
+ *
  * See the file license.html distributed with this software for more
  * information about licensing.
- * 
+ *
  * You should have received a copy of the CVALv3 along with this program.
  * If not, see <http://vaadin.com/license/cval-3>.
  * #L%
@@ -22,13 +22,30 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
+/*
+ * #%L
+ * Vaadin Breadcrumb for Vaadin 10
+ * %%
+ * Copyright (C) 2017 - 2019 Vaadin Ltd
+ * %%
+ * This program is available under Commercial Vaadin Add-On License 3.0
+ * (CVALv3).
+ *
+ * See the file license.html distributed with this software for more
+ * information about licensing.
+ *
+ * You should have received a copy of the CVALv3 along with this program.
+ * If not, see <http://vaadin.com/license/cval-3>.
+ * #L%
+ */
+
 /**
- * Server-side component for the <code>incubator-breadcrumb</code> element.
+ * Server-side component for the <code>vcf-breadcrumb</code> element.
  *
  * @author Vaadin Ltd
  */
-@Tag("incubator-breadcrumb")
-@HtmlImport("frontend://bower_components/incubator-breadcrumbs/src/incubator-breadcrumb.html")
+@Tag("vcf-breadcrumb")
+@HtmlImport("frontend://bower_components/vcf-breadcrumbs/src/vcf-breadcrumb.html")
 public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
 
     /**
@@ -122,7 +139,7 @@ public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
     }
 
     /**
-     * This model binds properties between java(Breadcrumb) and polymer(incubator-breadcrumb.html)
+     * This model binds properties between java(Breadcrumb) and polymer(vcf-breadcrumb.html)
      */
     public interface BreadcrumbModel extends TemplateModel {
         void setShift(boolean mobile);

@@ -10,11 +10,12 @@
 		<relativePath />
 	</parent>
 
-	<artifactId>incubator-breadcrumb-flow-root</artifactId>
+	<groupId>com.vaadin.componentfactory</groupId>
+	<artifactId>breadcrumb-root</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>Incubator breadcrumb Root</name>
+	<name>Breadcrumb Root</name>
 
 	<inceptionYear>2018</inceptionYear>
 	<organization>
@@ -33,8 +34,8 @@
 	</properties>
 
 	<modules>
-		<module>incubator-breadcrumb-flow</module>
-		<module>incubator-breadcrumb-flow-vaadincom-demo</module>
+		<module>breadcrumb</module>
+		<module>breadcrumb-demo</module>
 	</modules>
 	<repositories>
 		<repository>

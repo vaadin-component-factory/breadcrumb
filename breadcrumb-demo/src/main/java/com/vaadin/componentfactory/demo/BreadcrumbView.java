@@ -1,8 +1,8 @@
-package com.vaadin.flow.component.incubator.vaadincom;
+package com.vaadin.componentfactory.demo;
 
+import com.vaadin.componentfactory.Breadcrumb;
+import com.vaadin.componentfactory.Breadcrumbs;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.incubator.Breadcrumb;
-import com.vaadin.flow.component.incubator.Breadcrumbs;
 import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
 
@@ -14,7 +14,7 @@ public class BreadcrumbView extends DemoView {
         Breadcrumbs breadcrumbs = new Breadcrumbs(
                 new Breadcrumb("Home","breadcrumbs/#", true),
                 new Breadcrumb("Components", "breadcrumbs/#", true),
-                new Breadcrumb("Incubator Components", "breadcrumbs/#"),
+                new Breadcrumb("VCF Components", "breadcrumbs/#"),
                 new Breadcrumb("Breadcrumbs"));
 
         Div description = new Div();
