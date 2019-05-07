@@ -68,4 +68,11 @@
 			<artifactId>vaadin-core</artifactId>
 		</dependency>
 	</dependencies>
+
+	<licenses>
+		<license>
+			<name>CVALv3</name>
+			<url>https://vaadin.com/license/cval-3</url>
+		</license>
+	</licenses>
 </project>
