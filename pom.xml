@@ -40,8 +40,8 @@
 	</properties>
 
 	<modules>
-		<!--<module>breadcrumb</module>-->
-		<!--<module>breadcrumb-demo</module>-->
+		<module>breadcrumb</module>
+		<module>breadcrumb-demo</module>
 	</modules>
 	<repositories>
 		<repository>
