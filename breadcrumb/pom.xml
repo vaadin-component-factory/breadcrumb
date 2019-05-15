@@ -3,23 +3,50 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.vaadin.componentfactory</groupId>
-        <artifactId>breadcrumb-root</artifactId>
-        <version>1.2.0</version>
-    </parent>
-
+    <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>breadcrumb</artifactId>
-    <packaging>jar</packaging>
+    <version>1.2.0</version>
 
     <name>Breadcrumb Component</name>
+
+    <inceptionYear>2018</inceptionYear>
+    <organization>
+        <name>Vaadin Ltd</name>
+        <url>http://vaadin.com/</url>
+    </organization>
+
+    <packaging>jar</packaging>
 
     <properties>
         <jetty.plugin.version>9.3.9.v20160517</jetty.plugin.version>
         <powermock.version>1.7.1</powermock.version>
+        <vaadin.version>10.0.6</vaadin.version>
+        <flow.version>1.0.5</flow.version>
+        <testbench.version>6.0.1</testbench.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
+                <version>${vaadin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.vaadin.componentfactory.webjar</groupId>
             <artifactId>vcf-breadcrumb</artifactId>
