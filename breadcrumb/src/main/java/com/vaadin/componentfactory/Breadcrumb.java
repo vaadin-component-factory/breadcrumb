@@ -19,6 +19,8 @@ package com.vaadin.componentfactory;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
@@ -46,6 +48,8 @@ import com.vaadin.flow.templatemodel.TemplateModel;
  */
 @Tag("vcf-breadcrumb")
 @HtmlImport("frontend://bower_components/vcf-breadcrumbs/src/vcf-breadcrumb.html")
+@NpmPackage(value = "@vaadin-component-factory/vcf-breadcrumb", version = "1.2.0")
+@JsModule("@vaadin-component-factory/vcf-breadcrumb/src/vcf-breadcrumb.js")
 public class Breadcrumb extends PolymerTemplate<Breadcrumb.BreadcrumbModel> {
 
     /**
