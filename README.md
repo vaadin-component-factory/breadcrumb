@@ -1,5 +1,5 @@
 # Component Factory Breadcrumb for Vaadin 10+
-Breadcrumb is Java API for [<vcf-breadcrumbs>](https://github.com/vaadin-component-factory/vcf-breadcrumb) web component for Vaadin 10. 
+Breadcrumb is the Java API for [<vcf-breadcrumbs>](https://github.com/vaadin-component-factory/vcf-breadcrumb) web component for Vaadin 10+. Support for Vaadin 14+ is starting from version 2.0.0. 
 It provides an easy way to display breadcrumb on web pages.
 
 [Live Demo ↗](https://incubator.app.fi/breadcrumb-demo/breadcrumbs)
