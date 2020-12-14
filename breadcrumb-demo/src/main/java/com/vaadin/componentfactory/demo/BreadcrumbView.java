@@ -5,8 +5,10 @@ import com.vaadin.componentfactory.Breadcrumbs;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 
 @Route("breadcrumbs")
+@RouteAlias("")
 public class BreadcrumbView extends DemoView {
 
     @Override
