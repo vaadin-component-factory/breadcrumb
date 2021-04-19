@@ -20,7 +20,7 @@
     <properties>
         <jetty.plugin.version>9.4.11.v20180605</jetty.plugin.version>
         <powermock.version>1.7.1</powermock.version>
-        <vaadin.version>14.4.4</vaadin.version>
+        <vaadin.version>14.4.10</vaadin.version>
         <testbench.version>6.0.1</testbench.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
