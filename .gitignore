@@ -24,16 +24,28 @@ target/
 *.iml
 .idea/
 .eclipse
+.vscode
+.settings
+.classpath
+.project
 
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-node
-node_modules
-package-lock.json
-package.json
-webpack.config.js
-webpack.generated.js
+# vaadin related files
+breadcrumb-demo/package.json
+breadcrumb-demo/webpack.config.js
+breadcrumb-demo/webpack.generated.js
+breadcrumb-demo/target/classes/META-INF/VAADIN/config/flow-build-info.json
+breadcrumb-demo/node_modules
+breadcrumb-demo/package-lock.json
+breadcrumb-demo/src/main/frontend/generated
+breadcrumb-demo/src/main/frontend/index.html
+breadcrumb-demo/src/main/bundles
+breadcrumb-demo/tsconfig.json
+breadcrumb-demo/types.d.ts
+breadcrumb-demo/vite.config.ts
+breadcrumb-demo/vite.generated.ts
 
 

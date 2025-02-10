@@ -1,10 +1,8 @@
-package com.vaadin.componentfactory;
-
 /*
  * #%L
- * Vaadin Breadcrumb for Vaadin 10
+ * Breadcrumb Component
  * %%
- * Copyright (C) 2017 - 2019 Vaadin Ltd
+ * Copyright (C) 2018 - 2025 Vaadin Ltd
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,37 +17,32 @@ package com.vaadin.componentfactory;
  * limitations under the License.
  * #L%
  */
+package com.vaadin.componentfactory;
 
 import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.flow.component.littemplate.LitTemplate;
 
 /**
- * Server-side component for the <code>vcf-breadcrumbs</code> element.
- * An easy way to display breadcrumb on web pages.
- * This component is container for Breadcrumb components
+ * Server-side component for the <code>vcf-breadcrumbs</code> element. An easy way to display
+ * breadcrumb on web pages. This component is container for Breadcrumb components
  *
  * @author Vaadin Ltd
  */
 @Tag("vcf-breadcrumbs")
-@HtmlImport("frontend://bower_components/vcf-breadcrumbs/src/vcf-breadcrumbs.html")
-@NpmPackage(value = "@vaadin-component-factory/vcf-breadcrumb", version = "1.2.0")
-@JsModule("@vaadin-component-factory/vcf-breadcrumb/src/vcf-breadcrumb.js")
-public class Breadcrumbs extends PolymerTemplate<TemplateModel>
-        implements HasOrderedComponents<Breadcrumb>, HasSize {
+@NpmPackage(value = "@vaadin-component-factory/vcf-breadcrumb", version = "2.0.0")
+@JsModule("@vaadin-component-factory/vcf-breadcrumb/vcf-breadcrumbs.js")
+public class Breadcrumbs extends LitTemplate implements HasOrderedComponents, HasSize {
 
-    /**
-     * Creates instance of Breadcrumbs  as container for breadcrumbs which are passed as param
-     *
-     * @param breadcrumbs
-     *                      brick components of breadcrumbs component
-     */
-    public Breadcrumbs(Breadcrumb... breadcrumbs) {
-        add(breadcrumbs);
-    }
+  /**
+   * Creates instance of Breadcrumbs as container for breadcrumbs which are passed as param
+   *
+   * @param breadcrumbs brick components of breadcrumbs component
+   */
+  public Breadcrumbs(Breadcrumb... breadcrumbs) {
+    add(breadcrumbs);
+  }
 }

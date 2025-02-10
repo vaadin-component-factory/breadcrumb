@@ -1,0 +1,27 @@
+/* General rule for all demos. */ 
+/*Breadcrumbs with aria-current="page" tag, have color given by --lumo-contrast-60pct */
+vcf-breadcrumb[aria-current="page"] .breadcrumb-anchor {
+	color: var(--lumo-contrast-60pct);
+}
+
+/* Styles applied to "Breadcrumbs with styling" example */
+/* Change separator to be "/" instead of default --lumo-icons-angle-right */
+.styled-breadcrumb {
+	--vcf-breadcrumb-separator-symbol: "/";
+	--vcf-breadcrumb-separator-color: var(--lumo-contrast-80pct);
+	--vcf-breadcrumb-separator-size: var(--lumo-font-size-l);
+}
+/* Change anchor style */
+.styled-breadcrumb .breadcrumb-anchor {
+	text-decoration: none;
+	color: var(--lumo-body-text-color);
+}
+/* Change on hover style */
+.styled-breadcrumb .breadcrumb-anchor:hover {
+	text-decoration: underline;
+	color: var(--lumo-primary-text-color);
+}
+/* Change color on first breadcrumb */
+.styled-breadcrumb.home-style .breadcrumb-anchor {
+	color: red;
+}
