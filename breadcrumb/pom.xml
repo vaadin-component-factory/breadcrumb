@@ -5,7 +5,7 @@
 
     <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>breadcrumb</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
 
     <name>Breadcrumb Component</name>
 
