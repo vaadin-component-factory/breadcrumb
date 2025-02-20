@@ -26,13 +26,10 @@ public class BreadcrumbView extends DemoView {
   private void basicUseExample() {
     Breadcrumbs breadcrumbs = new Breadcrumbs(
         new Breadcrumb("Home", "breadcrumbs/#"),
-        new Breadcrumb("Components", "breadcrumbs/#", true),
-        new Breadcrumb("VCF Components", "breadcrumbs/#", true), 
+        new Breadcrumb("Components", "breadcrumbs/#"),
+        new Breadcrumb("VCF Components", "breadcrumbs/#"), 
         new Breadcrumb("Breadcrumbs"));
-    Div description = new Div();
-    description.setText("Breadcrumb \"Components\" will be hidden when "
-        + "viewport size will be smaller then 420px.");
-    addCard("Breadcrumbs basic usage", breadcrumbs, description);
+    addCard("Breadcrumbs basic usage", breadcrumbs);
   }
 
   private void routingExample() {
