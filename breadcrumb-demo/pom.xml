@@ -5,7 +5,7 @@
 
     <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>breadcrumb-demo</artifactId>
-    <version>3.0.1</version>
+    <version>3.0.2-SNAPSHOT</version>
 
     <name>Breadcrumb Demo</name>
 
