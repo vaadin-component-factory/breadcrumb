@@ -6,7 +6,7 @@
 	<groupId>com.vaadin.componentfactory</groupId>
 	<artifactId>breadcrumb-root</artifactId>
 	<packaging>pom</packaging>
-	<version>3.1.1-SNAPSHOT</version>
+	<version>3.1.1</version>
 
 	<name>Breadcrumb Root</name>
 
