@@ -30,6 +30,18 @@ Breadcrumbs "Components" && "VCF Components" will collapse and show ellipsis whe
     - Each range is hidden when necessary and replaced with an ellipsis element.
 - `shift` attribute from previous version was removed. Responsive behavior is now given by the `collapse` attribute implementation.
 
+## Updates since version 3.1.0
+
+- Update web component version to [2.1.0](https://github.com/vaadin-component-factory/vcf-breadcrumb/releases/tag/v2.1.0). This version includes new feature to display a popover showing the hidden (collapsible) breadcrumbs items on ellipsis element when space is not enough to display all breadcrumbs.
+
+## Updates since version 3.2.0
+
+- Update web component version to [2.2.0](https://github.com/vaadin-component-factory/vcf-breadcrumb/releases/tag/v2.2.0). This version adds support for [Mobile Mode](https://github.com/vaadin-component-factory/vcf-breadcrumb/issues/6), which can be triggered in two ways:
+	- Based on a fixed breakpoint (same as other Vaadin components): `(max-width: 450px), (max-height: 450px)` or
+	- Programmatically, using the flag `forceMobileMode`, which allows to enable mobile layout manually
+
+![breadcrumbs-mobile-mode](https://github.com/user-attachments/assets/1c555264-944a-4134-83d2-6b47e0c32610)
+
 ## Setting up for development:
 Clone the project in GitHub (or fork it if you plan on contributing)
 ```
