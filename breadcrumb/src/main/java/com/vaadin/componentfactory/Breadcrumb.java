@@ -30,7 +30,7 @@ import com.vaadin.flow.component.littemplate.LitTemplate;
  * @author Vaadin Ltd
  */
 @Tag("vcf-breadcrumb")
-@NpmPackage(value = "@vaadin-component-factory/vcf-breadcrumb", version = "2.1.1")
+@NpmPackage(value = "@vaadin-component-factory/vcf-breadcrumb", version = "2.2.0")
 @JsModule("@vaadin-component-factory/vcf-breadcrumb/dist/src/vcf-breadcrumbs.js")
 public class Breadcrumb extends LitTemplate {
 
