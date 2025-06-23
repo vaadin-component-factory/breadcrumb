@@ -21,6 +21,7 @@ public class BreadcrumbView extends DemoView {
     collapseExample();
     collapseEllispisOnlyExample();
     stylingExample();
+    forcingMobileModeExample();
   }
 
   private void basicUseExample() {
@@ -50,7 +51,7 @@ public class BreadcrumbView extends DemoView {
         new Breadcrumb("Components", "breadcrumbs/#", true),
         new Breadcrumb("VCF Components", "breadcrumbs/#", true), 
         new Breadcrumb("Breadcrumbs"));
-    breadcrumbs.setWidth("350px");
+    breadcrumbs.setMaxWidth("460px");
     Div description = new Div();
     description.setText("The first item in the breadcrumb is always shown in full. "
         + "The items with 'collapse' in true are clipped and shown with ellipsis when space runs out.");
@@ -60,16 +61,19 @@ public class BreadcrumbView extends DemoView {
   private void collapseEllispisOnlyExample() {
     Breadcrumbs breadcrumbs = new Breadcrumbs(
         new Breadcrumb("Home", "breadcrumbs/#"),
-        new Breadcrumb("Vaadin Flow", "breadcrumbs/#", true),
+        new Breadcrumb("Add-ons Directory", "breadcrumbs/#", true),
+        new Breadcrumb("Flow", "breadcrumbs/#", true),
+        new Breadcrumb("Vaadin Latest ", "breadcrumbs/#", true),
         new Breadcrumb("Components", "breadcrumbs/#"),
+        new Breadcrumb("Sponsored", "breadcrumbs/#", true),
         new Breadcrumb("VCF Components", "breadcrumbs/#", true), 
         new Breadcrumb("Breadcrumbs"));
-    breadcrumbs.setWidth("250px");
+    breadcrumbs.setMaxWidth("460px");
     Div description = new Div();
     description.setText(
         "If space is limited, the items with 'collapse' in true are hidden and a single ellipsis element is shown instead."
             + " The first item is always shown in full.");
-    addCard("Breadcrumbs showing collapse elements replaced with ellipsis element.", breadcrumbs,
+    addCard("Breadcrumbs showing collapse elements replaced with ellipsis element", breadcrumbs,
         description);
   }
 
@@ -85,6 +89,16 @@ public class BreadcrumbView extends DemoView {
         + " change default color of anchor links and make \"Home\" to have a different color "
         + "than the rest of the breadcrumbs.");
     addCard("Breadcrumbs with styling", breadcrumbs, description);
+  }
+  
+  private void forcingMobileModeExample() {
+    Breadcrumbs breadcrumbs = new Breadcrumbs(
+        new Breadcrumb("Home", "breadcrumbs/#"),
+        new Breadcrumb("Components", "breadcrumbs/#"),
+        new Breadcrumb("VCF Components", "breadcrumbs/#"), 
+        new Breadcrumb("Breadcrumbs"));
+    breadcrumbs.setForceMobileMode(true);
+    addCard("Mobile mode forced by flag", breadcrumbs);
   }
 
   private Breadcrumb createStyledBreadcrumb(String text, String href) {
