@@ -46,5 +46,27 @@ public class Breadcrumbs extends LitTemplate implements HasOrderedComponents, Ha
   public Breadcrumbs(Breadcrumb... breadcrumbs) {
     add(breadcrumbs);
   }
+
+  /**
+   * Sets whether the component should force mobile mode, regardless of the current screen size or
+   * media query state.
+   * <p>
+   * This allows programmatic control over mobile styling, for example when the application uses its
+   * own logic to detect mobile devices.
+   *
+   * @param forceMobileMode {@code true} to enable mobile mode manually; {@code false} to disable it
+   */
+  public void setForceMobileMode(boolean forceMobileMode) {
+    getElement().setProperty("forceMobileMode", forceMobileMode);
+  }
+
+  /**
+   * Returns whether mobile mode has been forced programmatically.
+   *
+   * @return {@code true} if mobile mode is enabled, {@code false} otherwise
+   */
+  public boolean isForceMobileMode() {
+    return getElement().getProperty("forceMobileMode", false);
+  }
   
 }
