@@ -5,7 +5,7 @@
 
     <groupId>com.vaadin.componentfactory</groupId>
     <artifactId>breadcrumb</artifactId>
-    <version>3.2.1-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
 
     <name>Breadcrumb Component</name>
 
@@ -18,9 +18,9 @@
     <packaging>jar</packaging>
 
     <properties>
-		<vaadin.version>24.5.8</vaadin.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+		<vaadin.version>25.0.0-alpha14</vaadin.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -167,4 +167,19 @@
             </build>
         </profile>
     </profiles>
+
+
+
+    <repositories>
+        <repository>
+            <id>vaadin-prereleases</id>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
