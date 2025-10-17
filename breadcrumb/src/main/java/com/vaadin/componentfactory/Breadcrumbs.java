@@ -34,7 +34,7 @@ import com.vaadin.flow.component.littemplate.LitTemplate;
  */
 @SuppressWarnings("serial")
 @Tag("vcf-breadcrumbs")
-@NpmPackage(value = "@vaadin-component-factory/vcf-breadcrumb", version = "2.2.0")
+@NpmPackage(value = "@vaadin-component-factory/vcf-breadcrumb", version = "3.0.0")
 @JsModule("@vaadin-component-factory/vcf-breadcrumb/dist/src/vcf-breadcrumbs.js")
 public class Breadcrumbs extends LitTemplate implements HasOrderedComponents, HasSize {
 
