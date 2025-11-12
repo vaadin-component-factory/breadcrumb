@@ -20,6 +20,9 @@ Breadcrumbs "Components" && "VCF Components" will collapse and show ellipsis whe
 ![breadcrumbs-02](https://github.com/user-attachments/assets/ed7b09bf-8dac-4212-bf4b-6c250c20fb93)
 ![breadcrumbs-03](https://github.com/user-attachments/assets/1e6ebd84-4b44-4532-ac48-0a5e04573c83)
 
+## Updates since version 4.0.0
+- Vaadin 25.0+ support.
+
 ## Updates since version 3.0.0
 - Vaadin 24.5+ support.
 - Web component part (version 2.0.0) is now Lit based.
