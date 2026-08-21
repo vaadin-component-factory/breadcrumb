@@ -1,58 +1,64 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Java CI with Maven
+name: Build and test
 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  # Allows re-running the job manually, e.g. after a freshly published web
+  # component version has aged past Vaadin's npm --min-release-age check.
+  workflow_dispatch:
 
 jobs:
   build:
-
+    name: Java 21 build and integration tests
     runs-on: ubuntu-latest
 
     steps:
-    - name: Cache local Maven repository
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - name: Cache local NPM
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Build with Maven
-      run: mvn -B package -Pproduction --file pom.xml
-    - name: Rename the war and remove the version
-      run: mv ${{ secrets.DEMO_NAME }}/target/${{ secrets.DEMO_NAME }}*.war ${{ secrets.DEMO_NAME }}.war
-    - name: SCP to the server
-      # You may pin to the exact commit or the version.
-      # uses: appleboy/scp-action@edc8ec9139a2687bcebf0249d0352ff2a988df00
-      uses: appleboy/scp-action@v0.1.1
-      with:
-        # scp remote host
-        host: ${{ secrets.APP_FI_HOST }}
-        # scp remote port
-        port: ${{ secrets.APP_FI_PORT }}
-        # scp username
-        username: ${{ secrets.APP_FI_USER }}
-        # scp password
-        password: ${{ secrets.APP_FI_PASSWORD }}
-        # target path on the server
-        target: webapps/
-        # scp file list
-        source: ${{ secrets.DEMO_NAME }}.war
-        fingerprint: ${{ secrets.APP_FI_SHA256 }}
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+          # Handles the ~/.m2/repository cache.
+          cache: maven
+
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      # Playwright downloads its browsers on the first Playwright.create() and
+      # keeps them here, so caching this turns a ~1 minute download into nothing
+      # on later runs.
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-playwright-
+
+      # The `it` profile builds the frontend in production mode, starts Jetty,
+      # runs the Playwright tests and stops Jetty again.
+      - name: Build and run integration tests
+        run: mvn -B clean verify -Pit
+
+      - name: Upload Playwright traces
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-traces
+          path: breadcrumb-demo/target/playwright/**
+          if-no-files-found: ignore
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failsafe-reports
+          path: breadcrumb-demo/target/failsafe-reports/**
+          if-no-files-found: ignore
