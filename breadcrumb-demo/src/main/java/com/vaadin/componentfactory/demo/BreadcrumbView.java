@@ -2,9 +2,11 @@ package com.vaadin.componentfactory.demo;
 
 import com.vaadin.componentfactory.Breadcrumb;
 import com.vaadin.componentfactory.Breadcrumbs;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.card.Card;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.demo.DemoView;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
@@ -12,10 +14,9 @@ import com.vaadin.flow.router.RouteAlias;
 @Route("breadcrumbs")
 @RouteAlias("")
 @CssImport("./styles/demo-styles.css")
-public class BreadcrumbView extends DemoView {
+public class BreadcrumbView extends VerticalLayout {
 
-  @Override
-  protected void initView() {
+  public BreadcrumbView() {
     basicUseExample();
     routingExample();
     collapseExample();
@@ -111,5 +112,19 @@ public class BreadcrumbView extends DemoView {
     Breadcrumb breadcrumb = createStyledBreadcrumb(text, href);
     breadcrumb.addClassName("home-style");
     return breadcrumb;
+  }
+
+  private Card addCard(String title, Component breadcrumbs) {
+    Card card = new Card();
+    card.setTitle(title);
+    card.add(breadcrumbs);
+    add(card);
+    return card;
+  }
+
+  private Card addCard(String title, Component breadcrumbs, Component description) {
+    Card card = addCard(title, breadcrumbs);
+    card.add(description);
+    return card;
   }
 }

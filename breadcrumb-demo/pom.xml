@@ -19,16 +19,39 @@
 
     <properties>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <vaadin.version>25.0.0</vaadin.version>
+        <vaadin.version>25.2.6</vaadin.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <frontend.hotdeploy>true</frontend.hotdeploy>
+        <playwright.version>1.62.0</playwright.version>
+        <junit.version>5.14.4</junit.version>
+        <jetty.plugin.version>12.1.12</jetty.plugin.version>
+        <failsafe.version>3.5.6</failsafe.version>
+        <war.plugin.version>3.4.0</war.plugin.version>
+        <!-- Port the integration tests boot Jetty on; kept off 8080 so `mvn jetty:run` can run alongside -->
+        <it.port>8081</it.port>
+        <it.stopPort>9099</it.stopPort>
+        <!-- Override with -Dit.excludedGroups= to also run the known-issue reproductions -->
+        <it.excludedGroups>known-issue</it.excludedGroups>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--
+                Declared before vaadin-bom on purpose. vaadin-bom pins junit-jupiter-api to 6.0.3,
+                which does not match the JUnit 5 engine that Failsafe 3.5.x and Playwright's
+                @UsePlaywright extension run on; mixing the two makes test discovery fail outright.
+                The first dependencyManagement entry wins, so this keeps the whole JUnit set aligned.
+            -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-bom</artifactId>
@@ -45,17 +68,24 @@
             <artifactId>vaadin-dev</artifactId>
             <optional>true</optional>
         </dependency>
-    
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-component-demo-helpers</artifactId>
-            <version>9.2.3</version>
-        </dependency>
 
         <dependency>
             <groupId>com.vaadin.componentfactory</groupId>
             <artifactId>breadcrumb</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <!-- Playwright integration tests, run with `mvn verify -Pit` -->
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>${playwright.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -84,11 +114,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--
+                Configured explicitly: maven-war-plugin 3.x has no default expression for
+                failOnMissingWebXml, so the bare project property does not reach it. Without this the
+                war goal fails, because the plugin's Servlet 3.0 auto-detection only recognises the
+                old javax.servlet API and this app is on jakarta.servlet.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${war.plugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>${failOnMissingWebXml}</failOnMissingWebXml>
+                </configuration>
+            </plugin>
             <!-- Jetty plugin for easy testing without a server -->
             <plugin>
                 <groupId>org.eclipse.jetty.ee11</groupId>
                 <artifactId>jetty-ee11-maven-plugin</artifactId>
-                <version>12.1.2</version>
+                <version>${jetty.plugin.version}</version>
                 <configuration>
                     <scan>1</scan>
                 </configuration>
@@ -128,6 +172,117 @@
                                 <goals>
 									<goal>prepare-frontend</goal>
                                 		<goal>build-frontend</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!--
+            Integration tests: `mvn verify -Pit`
+
+            Builds the frontend in production mode (so the ITs do not pay Vite start-up on the first
+            request), boots Jetty on ${it.port}, runs the *IT classes with Playwright, stops Jetty.
+            Failsafe only exists inside this profile, so a plain `mvn verify` still runs no ITs.
+        -->
+        <profile>
+            <id>it</id>
+            <properties>
+                <vaadin.productionMode>true</vaadin.productionMode>
+                <frontend.hotdeploy>false</frontend.hotdeploy>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>flow-server-production-mode</artifactId>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>vaadin-maven-plugin</artifactId>
+                        <version>${vaadin.version}</version>
+                        <configuration>
+                            <!--
+                                Vaadin decides whether a production bundle rebuild is needed by
+                                looking at npm dependencies, themes and CSS - not at the Flow route
+                                chunks. Adding or renaming a @Route therefore leaves the packaged
+                                bundle's chunk registry without a key for it, and because
+                                Flow.loadOnDemand() silently ignores unknown keys, the route renders
+                                with its web components never upgraded and no error anywhere.
+                                Forcing the build keeps the bundle honest for the tests.
+                            -->
+                            <forceProductionBuild>true</forceProductionBuild>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>frontend-build-it</id>
+                                <goals>
+                                    <goal>prepare-frontend</goal>
+                                    <goal>build-frontend</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.eclipse.jetty.ee11</groupId>
+                        <artifactId>jetty-ee11-maven-plugin</artifactId>
+                        <version>${jetty.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>start-jetty</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <configuration>
+                                    <stopKey>breadcrumb-it</stopKey>
+                                    <stopPort>${it.stopPort}</stopPort>
+                                    <httpConnector>
+                                        <port>${it.port}</port>
+                                    </httpConnector>
+                                    <webApp>
+                                        <contextPath>/</contextPath>
+                                    </webApp>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop-jetty</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <configuration>
+                                    <stopKey>breadcrumb-it</stopKey>
+                                    <stopPort>${it.stopPort}</stopPort>
+                                    <stopWait>15</stopWait>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${failsafe.version}</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <it.baseUrl>http://localhost:${it.port}</it.baseUrl>
+                            </systemPropertyVariables>
+                            <!--
+                                KnownIssuesIT reproduces defects that exist in the web component
+                                today, so it is expected to fail. Excluding it keeps this suite a
+                                usable regression signal; run it on purpose with
+                                -Dfailsafe.excludedGroups= to see the outstanding defects.
+                            -->
+                            <excludedGroups>${it.excludedGroups}</excludedGroups>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
                                 </goals>
                             </execution>
                         </executions>
