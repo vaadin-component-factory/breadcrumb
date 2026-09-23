@@ -2,6 +2,9 @@
 Breadcrumb is the Java API for [`<vcf-breadcrumb>`](https://github.com/vaadin-component-factory/vcf-breadcrumb) web component for Vaadin Flow. 
 It provides an easy way to display breadcrumb on web pages.
 
+## Note Vaadin 25.3
+Since Vaadin 25.3, a [Breadcrumbs](https://vaadin.com/docs/latest/components/breadcrumbs) component is included as a core component in Vaadin. It covers most features of this add-on and adds automatic trail generation from the route hierarchy, so we recommend using the official Breadcrumbs component for new projects. This add-on remains available for features not present in the core component, such as per-item collapse control and forced mobile mode. Both components use a class named Breadcrumbs, so make sure to import the correct package.
+
 ## Usage
 Create instance of `Breadcrumbs` and instances of `Breadcrumb`. You can set breadcrumb `text` and `href`. 
 Also you can set property `collpase`, which will indicate whether breadcrumb should collapse when there's no enough space to display in full.
